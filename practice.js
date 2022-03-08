@@ -52,7 +52,8 @@ var startsWith = function(fruits, letter) {
 
 // return a filtered array containing only cookie-type desserts.
 var cookiesOnly = function(desserts) {
-
+  var isCookie = function(item) {return item.type === 'cookie'};
+  return _.filter(desserts, isCookie);
 };
 
 /*
@@ -63,7 +64,13 @@ var cookiesOnly = function(desserts) {
 
 // return the total price of all products.
 var sumTotal = function(products) {
-
+  productPrices = _.map(products, function(item) {
+    return item = parseFloat(item.price.slice(1));
+  })
+  console.log(productPrices)
+  return _.reduce(productPrices, function(memo, item) {
+    return memo += item;
+  }, 0)
 };
 
 // return an object consisting of dessert types and how many of each.
