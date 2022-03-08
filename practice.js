@@ -107,7 +107,13 @@ var ninetiesKid = function(movies) {
 // runtime than your time limit.
 // timeLimit is an integer representing a number of minutes.
 var movieNight = function(movies, timeLimit) {
-
+  var movieAvailable = false;
+  _.reduce(movies, function(memo, item) {
+    if (item.runtime <= timeLimit) {
+      movieAvailable = true;
+    }
+  });
+  return movieAvailable;
 };
 
 /*
@@ -119,7 +125,9 @@ var movieNight = function(movies, timeLimit) {
 // given an array of strings, use _.map to return a new array containing all
 // strings converted to uppercase letters.
 var upperCaseFruits = function(fruits) {
-
+  return _.map(fruits, function(item) {
+    return item.toUpperCase();
+  });
 };
 
 // given an array of dessert objects, return a new array of objects
