@@ -134,7 +134,6 @@ var upperCaseFruits = function(fruits) {
 var glutenFree = function(desserts) {
   return _.map(desserts, function(item) {
     if (_.indexOf(item.ingredients, 'flour') === -1) {
-      console.log(desserts)
       item.glutenFree = true;
     } else {
       item.glutenFree = false;
@@ -164,5 +163,9 @@ var glutenFree = function(desserts) {
 
 */
 var applyCoupon = function(groceries, coupon) {
-
+  return _.map(groceries, function(item) {
+    var priceInCents = parseInt(item.price.replace('.', '').slice(1));
+    item.salePrice = ('$' + parseInt(priceInCents * (1 - coupon)) / 100);
+    return item;
+  });
 };
