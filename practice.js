@@ -78,7 +78,6 @@ var dessertCategories = function(desserts) {
   var dessertTypeObject = _.map(desserts, function(item) {
     return item = item.type;
   });
-  console.log(dessertTypeObject);
   dessertTypeObject = _.reduce(dessertTypeObject, function(memo, item) {
     if (item in memo) {
       memo[item]++;
@@ -87,7 +86,6 @@ var dessertCategories = function(desserts) {
     }
     return memo;
   }, {});
-  console.log(dessertTypeObject);
   return dessertTypeObject;
 };
 
@@ -134,7 +132,15 @@ var upperCaseFruits = function(fruits) {
 // that have a new "glutenFree" property, with a boolean value.
 // TIP: Items that contain flour are not gluten-free.
 var glutenFree = function(desserts) {
-
+  return _.map(desserts, function(item) {
+    if (_.indexOf(item.ingredients, 'flour') === -1) {
+      console.log(desserts)
+      item.glutenFree = true;
+    } else {
+      item.glutenFree = false;
+    }
+    return item;
+  });
 };
 
 // use _.map to return an array of items with their sale prices, with a new property
