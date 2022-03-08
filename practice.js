@@ -64,10 +64,9 @@ var cookiesOnly = function(desserts) {
 
 // return the total price of all products.
 var sumTotal = function(products) {
-  productPrices = _.map(products, function(item) {
+  var productPrices = _.map(products, function(item) {
     return item = parseFloat(item.price.slice(1));
   })
-  console.log(productPrices)
   return _.reduce(productPrices, function(memo, item) {
     return memo += item;
   }, 0)
@@ -76,14 +75,32 @@ var sumTotal = function(products) {
 // return an object consisting of dessert types and how many of each.
 // exampleOutput: { dessertType: 3, dessertType2: 1 }
 var dessertCategories = function(desserts) {
-
+  var dessertTypeObject = _.map(desserts, function(item) {
+    return item = item.type;
+  });
+  console.log(dessertTypeObject);
+  dessertTypeObject = _.reduce(dessertTypeObject, function(memo, item) {
+    if (item in memo) {
+      memo[item]++;
+    } else {
+      memo[item] = 1;
+    }
+    return memo;
+  }, {});
+  console.log(dessertTypeObject);
+  return dessertTypeObject;
 };
 
 // given an array of movie data objects,return an array containing
 // movies that came out between 1990 and 2000.
 // TIP: use an array as your accumulator - don't push to an external array!
 var ninetiesKid = function(movies) {
-
+  return _.reduce(movies, function(memo, item) {
+    if (item.releaseYear >= 1990 && item.releaseYear <= 2000) {
+      memo.push(item.title);
+    }
+    return memo;
+  }, []);
 };
 
 // return an boolean stating if there exists a movie with a shorter
